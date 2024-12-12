@@ -1,5 +1,5 @@
-const { createEvent } = require('../../controllers/eventController');
-const { Event } = require('../../models');
+const { createEvent } = require('../controllers/eventController');
+const { Event } = require('../models');
 
 jest.mock('../../models', () => ({
   Event: {
