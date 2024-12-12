@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const EventController = require("../controllers/eventController");
-
 /**
  * @swagger
- * /event/create:
+ * /initialize:
  *   post:
  *     summary: Create a new event
  *     description: This endpoint allows you to create a new event with a specified name and total number of tickets.
@@ -63,11 +62,11 @@ const EventController = require("../controllers/eventController");
  *       500:
  *         description: Internal server error
  */
-router.post("/create", EventController.createEvent);
+router.post("/initialize", EventController.createEvent);
 
 /**
  * @swagger
- * /event/{eventId}/status:
+ * /status/{eventId}:
  *   get:
  *     summary: Get the status of an event
  *     description: This endpoint retrieves the status of an event, including the number of available tickets and the number of people on the waiting list.
@@ -79,8 +78,9 @@ router.post("/create", EventController.createEvent);
  *         required: true
  *         description: The ID of the event to get the status for.
  *         schema:
- *           type: integer
- *           example: 1
+ *           type: string
+ *           format: uuid
+ *           example: "123e4567-e89b-12d3-a456-426614174000"
  *     responses:
  *       200:
  *         description: Event status retrieved successfully
@@ -90,9 +90,9 @@ router.post("/create", EventController.createEvent);
  *               type: object
  *               properties:
  *                 eventId:
- *                   type: integer
+ *                   type: string
  *                   description: The unique identifier of the event.
- *                   example: 1
+ *                   example: "123e4567-e89b-12d3-a456-426614174000"
  *                 name:
  *                   type: string
  *                   description: The name of the event.
@@ -110,6 +110,6 @@ router.post("/create", EventController.createEvent);
  *       500:
  *         description: Internal server error
  */
-router.get("/:eventId/status", EventController.getEventStatus);
+router.get("/status/:eventId", EventController.getEventStatus);
 
 module.exports = router;

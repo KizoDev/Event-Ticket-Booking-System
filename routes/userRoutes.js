@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const UserController = require("../controllers/UserController");
-
+const UserController = require("../controllers/userController");
 /**
  * @swagger
  * /user/create:
@@ -26,6 +25,7 @@ const UserController = require("../controllers/UserController");
  *                 example: "John Doe"
  *               email:
  *                 type: string
+ *                 format: email
  *                 description: The email address of the new user.
  *                 example: "john.doe@example.com"
  *     responses:
@@ -43,9 +43,10 @@ const UserController = require("../controllers/UserController");
  *                   type: object
  *                   properties:
  *                     id:
- *                       type: integer
+ *                       type: string
+ *                       format: uuid
  *                       description: The unique identifier of the created user.
- *                       example: 1
+ *                       example: "123e4567-e89b-12d3-a456-426614174000"
  *                     name:
  *                       type: string
  *                       description: The name of the user.
@@ -59,6 +60,6 @@ const UserController = require("../controllers/UserController");
  *       500:
  *         description: Internal server error
  */
-router.post("/create", UserController.createUser);
+router.post("/user/create", UserController.createUser);
 
 module.exports = router;

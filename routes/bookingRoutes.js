@@ -4,7 +4,7 @@ const BookingController = require("../controllers/bookingController");
 
 /**
  * @swagger
- * /booking/book:
+ * /book:
  *   post:
  *     summary: Book a ticket for an event
  *     description: This endpoint allows a user to book a ticket for an event if available. If no tickets are available, the user will be added to the waiting list.
@@ -21,13 +21,15 @@ const BookingController = require("../controllers/bookingController");
  *               - eventId
  *             properties:
  *               userId:
- *                 type: integer
+ *                 type: string
+ *                 format: uuid
  *                 description: The ID of the user booking the ticket.
- *                 example: 1
+ *                 example: "123e4567-e89b-12d3-a456-426614174000"
  *               eventId:
- *                 type: integer
+ *                 type: string
+ *                 format: uuid
  *                 description: The ID of the event for which the ticket is being booked.
- *                 example: 1
+ *                 example: "123e4567-e89b-12d3-a456-426614174000"
  *     responses:
  *       201:
  *         description: Ticket booked successfully
@@ -47,13 +49,15 @@ const BookingController = require("../controllers/bookingController");
  *                       description: The unique identifier of the booking.
  *                       example: 1
  *                     userId:
- *                       type: integer
+ *                       type: string
+ *                       format: uuid
  *                       description: The ID of the user who made the booking.
- *                       example: 1
+ *                       example: "123e4567-e89b-12d3-a456-426614174000"
  *                     eventId:
- *                       type: integer
+ *                       type: string
+ *                       format: uuid
  *                       description: The ID of the event for which the booking was made.
- *                       example: 1
+ *                       example: "123e4567-e89b-12d3-a456-426614174000"
  *       200:
  *         description: Added to waiting list if no tickets available
  *         content:
@@ -72,13 +76,15 @@ const BookingController = require("../controllers/bookingController");
  *                       description: The ID of the waiting list entry.
  *                       example: 1
  *                     userId:
- *                       type: integer
+ *                       type: string
+ *                       format: uuid
  *                       description: The ID of the user on the waiting list.
- *                       example: 1
+ *                       example: "123e4567-e89b-12d3-a456-426614174000"
  *                     eventId:
- *                       type: integer
+ *                       type: string
+ *                       format: uuid
  *                       description: The ID of the event the user is waiting for.
- *                       example: 1
+ *                       example: "123e4567-e89b-12d3-a456-426614174000"
  *                     position:
  *                       type: integer
  *                       description: The position of the user in the waiting list.
@@ -94,7 +100,7 @@ router.post("/book", BookingController.bookTicket);
 
 /**
  * @swagger
- * /booking/cancel:
+ * /cancel:
  *   post:
  *     summary: Cancel a booking
  *     description: This endpoint allows a user to cancel a previously made booking. If there is a waiting list, the next user will be booked.
