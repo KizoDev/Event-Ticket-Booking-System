@@ -10,10 +10,10 @@ const swaggerDocs = require("./swagger");
 app.use(express.json());
 
 // Routes
-app.use("/api/events", eventRoutes);       // Routes for event operations
-app.use("/api/bookings", bookingRoutes);   // Routes for ticket bookings
-app.use("/api/waiting-list", waitingListRoutes); // Routes for waiting list
-app.use("/api/users", userRoutes);         // Routes for user operations
+app.use("/", eventRoutes);       // Routes for event operations
+app.use("/", bookingRoutes);   // Routes for ticket bookings
+app.use("/", waitingListRoutes); // Routes for waiting list
+app.use("/", userRoutes);         // Routes for user operations
 const PORT = process.env.PORT || 8000;
 
 
@@ -32,3 +32,5 @@ app.use((req, res) => {
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+module.exports = app

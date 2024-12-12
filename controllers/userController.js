@@ -1,7 +1,6 @@
 const { User } = require("../models");
 
-module.exports = {
-  createUser: async (req, res) => {
+  const createUser = async (req, res) => {
     try {
       const { name, email } = req.body;
 
@@ -15,5 +14,9 @@ module.exports = {
     } catch (error) {
       return res.status(500).json({ message: "Error creating user.", error: error.message });
     }
-  },
-};
+  }
+
+  module.exports = { createUser };
+
+
+

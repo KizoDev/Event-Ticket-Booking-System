@@ -1,10 +1,9 @@
 const express = require("express");
 const router = express.Router();
 const WaitingListController = require("../controllers/waitingListController");
-
 /**
  * @swagger
- * /waitinglist/{eventId}:
+ * /event/{eventId}:
  *   get:
  *     summary: Get the waiting list for an event
  *     description: This endpoint retrieves the waiting list for a specific event.
@@ -33,9 +32,10 @@ const WaitingListController = require("../controllers/waitingListController");
  *                     description: The unique identifier of the waiting list entry.
  *                     example: 1
  *                   userId:
- *                     type: integer
+ *                     type: string
+ *                     format: uuid
  *                     description: The ID of the user on the waiting list.
- *                     example: 1
+ *                     example: "123e4567-e89b-12d3-a456-426614174000"
  *                   eventId:
  *                     type: integer
  *                     description: The ID of the event for which the user is waiting.
@@ -49,6 +49,6 @@ const WaitingListController = require("../controllers/waitingListController");
  *       500:
  *         description: Internal server error
  */
-router.get("/:eventId", WaitingListController.getWaitingList);
+router.get("/event/:eventId", WaitingListController.getWaitingList);
 
 module.exports = router;
