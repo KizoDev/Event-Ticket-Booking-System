@@ -1,5 +1,5 @@
-const { createUser } = require('../../controllers/userController');
-const { User } = require('../../models');
+const { createUser } = require('../controllers/userController');
+const { User } = require('../models');
 
 jest.mock('../../models', () => ({
   User: {

@@ -7,7 +7,10 @@ const { User } = require("../models");
       if (!name || !email) {
         return res.status(400).json({ message: "Name and email are required." });
       }
-
+      const existingUser = await User.findOne({ where: { email } });
+      if (existingUser) {
+        return res.status(409).json({ message: "Email already exists." }); 
+      }
       const user = await User.create({ name, email });
 
       return res.status(201).json({ message: "User created successfully.", user });
